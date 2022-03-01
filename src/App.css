@@ -64,6 +64,6 @@ form {
 label{
     margin: 10px;
 }
-input{
+input, button{
     margin: 5px;
 }
