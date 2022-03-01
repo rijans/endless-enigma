@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95ea4772-c955-4323-a6a7-c4826c377f7d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dist/output.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tailwind.css" afterDir="false" />
+    <list default="true" id="a84770d1-27ad-434c-ad91-ccdb673cb4a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Blog/BlogHome.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Blog/BlogList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Blog/NewBlogForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Home/Footer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Home/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Inputs/Button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,65 +20,35 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitToolBoxStore">
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1645197122" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1645197121" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="25HXGsqsNDIkfgo767rd1cIDHMJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="25mudB51aquHobLkizhwARevjFI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="95ea4772-c955-4323-a6a7-c4826c377f7d" name="Changes" comment="" />
-      <created>1645184895364</created>
+      <changelist id="a84770d1-27ad-434c-ad91-ccdb673cb4a9" name="Changes" comment="" />
+      <created>1646144672801</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1645184895364</updated>
-      <workItem from="1645184898531" duration="1897000" />
-      <workItem from="1645197962449" duration="556000" />
-      <workItem from="1645531987877" duration="115000" />
-      <workItem from="1645532491130" duration="54000" />
-      <workItem from="1645532581002" duration="482000" />
-      <workItem from="1645610477749" duration="1405000" />
+      <updated>1646144672801</updated>
+      <workItem from="1646144678385" duration="4215000" />
     </task>
     <servers />
   </component>
