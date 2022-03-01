@@ -60,6 +60,7 @@ function BlogListAndForm(props) {
         setTitle(blogList[blogIndex].title);
         setContent(blogList[blogIndex].content);
         setFormActionLabel('Update');
+        setIsEditing(true);
 
         blogList[blogIndex].isEditing = true;
         setBlogList(blogList);
@@ -70,6 +71,16 @@ function BlogListAndForm(props) {
         resetStates();
         blogList[blogIndex].isEditing = false;
         setBlogList(blogList);
+        console.log(blogList);
+    }
+
+    const handleDelete = (blogIndex, e) => {
+        console.log('Blog index to delete: ' + blogIndex);
+        console.log(blogList);
+        blogList.splice(blogIndex, 1);
+        console.log(blogList);
+        setBlogList(blogList);
+        resetStates();
     }
 
 
@@ -93,7 +104,7 @@ function BlogListAndForm(props) {
                     <th>Title</th>
                     <th>Content</th>
                     <th>Date</th>
-                    <th>Action</th>
+                    <th className="actions">Action</th>
                 </tr>
                 {
                     blogList.map((blog, blogIndex) =>
@@ -108,7 +119,7 @@ function BlogListAndForm(props) {
                                 {blog.isEditing ?
                                     <button type="button" value="" onClick={e => handleCancelEdit(blogIndex, e)}>Cancel
                                         edit</button> : ''}
-                                {/*<button type="button" value="" onClick={e => handleDelete(blogIndex, e)}>Trash</button>*/}
+                                <button type="button" value="" onClick={e => handleDelete(blogIndex, e)}>Trash</button>
                             </td>
                         </tr>
                     )

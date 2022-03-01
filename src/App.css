@@ -49,11 +49,15 @@ td, th {
     padding: 8px;
 }
 
+/*th.actions {*/
+/*    width: 30px;*/
+/*}*/
+
 tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-/*Table CSS*/
+/*Form CSS*/
 form {
     font-family: arial, sans-serif;
     border-collapse: collapse;
