@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 function BlogListAndForm(props) {
-    const [blogPageState, setBlogPageState] = useState({
+    const initialState = {
         input_title: '',
         input_content: '',
         entry_date: new Date().toLocaleString(),
         formActionLabel: 'Create',
         isEditingOne: false,
         editingBlogId: null
-    })
+    }
+    const [blogPageState, setBlogPageState] = useState(initialState)
     const [blogList, setBlogList] = useState([])
 
 
@@ -53,7 +54,7 @@ function BlogListAndForm(props) {
     }
 
     function resetBlogPageState() {
-        setBlogPageState({''})
+        setBlogPageState(initialState)
     }
 
     const handleEdit = (blogIndex, e) => {
