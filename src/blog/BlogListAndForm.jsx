@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function BlogListAndForm(props) {
     const [blogPageState, setBlogPageState] = useState({
@@ -40,7 +40,7 @@ function BlogListAndForm(props) {
         } else {
             // console.log('Doing update operation');
             //Update by edit
-            const updatedBlogList = blogList;
+            const updatedBlogList = [...blogList];
             updatedBlogList[blogPageState.editingBlogId].title = blogPageState.input_title;
             updatedBlogList[blogPageState.editingBlogId].content = blogPageState.input_content;
             updatedBlogList[blogPageState.editingBlogId].date = new Date().toLocaleString();
@@ -53,14 +53,7 @@ function BlogListAndForm(props) {
     }
 
     function resetBlogPageState() {
-        setBlogPageState({
-            input_title: '',
-            input_content: '',
-            entry_date: new Date().toLocaleString(),
-            formActionLabel: 'Create',
-            isEditingOne: false,
-            editingBlogId: null
-        })
+        setBlogPageState({''})
     }
 
     const handleEdit = (blogIndex, e) => {
