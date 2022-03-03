@@ -100,6 +100,7 @@ function BlogListAndForm(props) {
 
     return (
         <div>
+
             <form onSubmit={handleFormSubmit}>
                 <label>
                     Blog Title
@@ -107,10 +108,12 @@ function BlogListAndForm(props) {
                 </label>
                 <label>
                     Blog Content
-                    <input type="text" name="content" value={blogPageState.input_content} onChange={handleFormChange}/>
+                    <input type="text" name="content" value={blogPageState.input_content}
+                           onChange={handleFormChange}/>
                 </label>
                 <input type="submit" value={blogPageState.formActionLabel}/>
             </form>
+
             <table>
                 <tbody>
                 <tr>
