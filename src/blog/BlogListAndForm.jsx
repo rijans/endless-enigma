@@ -1,86 +1,100 @@
 import React, {useState} from 'react';
 
 function BlogListAndForm(props) {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [date, setDate] = useState('');
-    const [formActionLabel, setFormActionLabel] = useState('Create');
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingBlogId, setEditingBlogId] = useState(null);
+    const [blogPageState, setBlogPageState] = useState({
+        input_title: '',
+        input_content: '',
+        entry_date: new Date().toLocaleString(),
+        formActionLabel: 'Create',
+        isEditingOne: false,
+        editingBlogId: null
+    })
     const [blogList, setBlogList] = useState([])
 
 
     const handleFormChange = (e) => {
         if (e.target.name === 'title') {
-            setTitle(e.target.value);
+            setBlogPageState({
+                ...blogPageState,
+                input_title: e.target.value
+            });
         } else {
-            setContent(e.target.value);
+            setBlogPageState({
+                ...blogPageState,
+                input_content: e.target.value
+            });
         }
-
-        //Set current date
-        setDate(new Date().toLocaleString());
     }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        if (!isEditing) {
-            console.log('Doing Insert Operation');
+        if (!blogPageState.isEditingOne) {
             //Create & Update Blog list
             setBlogList([...blogList, {
-                title: title,
-                content: content,
-                date: date,
+                title: blogPageState.input_title,
+                content: blogPageState.input_content,
+                date: blogPageState.entry_date,
                 isEditing: false
             }]);
         } else {
-            console.log('Doing update operation');
+            // console.log('Doing update operation');
             //Update by edit
-            blogList[editingBlogId].title = title;
-            blogList[editingBlogId].content = content;
-            blogList[editingBlogId].date = new Date().toLocaleString();
-            blogList[editingBlogId].isEditing = false;
-            setBlogList(blogList);
+            const updatedBlogList = blogList;
+            updatedBlogList[blogPageState.editingBlogId].title = blogPageState.input_title;
+            updatedBlogList[blogPageState.editingBlogId].content = blogPageState.input_content;
+            updatedBlogList[blogPageState.editingBlogId].date = new Date().toLocaleString();
+            updatedBlogList[blogPageState.editingBlogId].isEditing = false;
+            setBlogList(updatedBlogList);
         }
 
         //Reset Blog form input states
-        resetStates();
+        resetBlogPageState();
     }
 
-    function resetStates() {
-        setTitle('');
-        setContent('');
-        setIsEditing(false);
-        setEditingBlogId(null);
-        setFormActionLabel('Create');
+    function resetBlogPageState() {
+        setBlogPageState({
+            input_title: '',
+            input_content: '',
+            entry_date: new Date().toLocaleString(),
+            formActionLabel: 'Create',
+            isEditingOne: false,
+            editingBlogId: null
+        })
     }
 
     const handleEdit = (blogIndex, e) => {
-        console.log('Blog index to edit: ' + blogIndex);
-        setTitle(blogList[blogIndex].title);
-        setContent(blogList[blogIndex].content);
-        setFormActionLabel('Update');
-        setIsEditing(true);
+        // console.log('Blog index to edit: ' + blogIndex);
+        setBlogPageState(
+            {
+                ...blogPageState,
+                input_title: blogList[blogIndex].title,
+                input_content: blogList[blogIndex].content,
+                formActionLabel: 'Update',
+                isEditingOne: true,
+                editingBlogId: blogIndex
+            }
+        )
 
         blogList[blogIndex].isEditing = true;
         setBlogList(blogList);
-        setEditingBlogId(blogIndex);
     }
     const handleCancelEdit = (blogIndex, e) => {
-        console.log('Blog index to cancel edit: ' + blogIndex);
-        resetStates();
-        blogList[blogIndex].isEditing = false;
+        // console.log('Blog index to cancel edit: ' + blogIndex);
+        resetBlogPageState();
+        blogList[blogIndex] = {
+            ...blogList[blogIndex],
+            isEditing: false
+        };
         setBlogList(blogList);
-        console.log(blogList);
     }
 
     const handleDelete = (blogIndex, e) => {
-        console.log('Blog index to delete: ' + blogIndex);
-        console.log(blogList);
-        blogList.splice(blogIndex, 1);
-        console.log(blogList);
-        setBlogList(blogList);
-        resetStates();
+        // console.log('Blog index to delete: ' + blogIndex);
+        const newBlogList = blogList
+        newBlogList.splice(blogIndex, 1);
+        setBlogList(newBlogList);
+        resetBlogPageState();
     }
 
 
@@ -89,13 +103,13 @@ function BlogListAndForm(props) {
             <form onSubmit={handleFormSubmit}>
                 <label>
                     Blog Title
-                    <input type="text" name="title" value={title} onChange={handleFormChange}/>
+                    <input type="text" name="title" value={blogPageState.input_title} onChange={handleFormChange}/>
                 </label>
                 <label>
                     Blog Content
-                    <input type="text" name="content" value={content} onChange={handleFormChange}/>
+                    <input type="text" name="content" value={blogPageState.input_content} onChange={handleFormChange}/>
                 </label>
-                <input type="submit" value={formActionLabel}/>
+                <input type="submit" value={blogPageState.formActionLabel}/>
             </form>
             <table>
                 <tbody>
