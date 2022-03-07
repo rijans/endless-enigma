@@ -1,5 +1,6 @@
-import './App.css';
+import './index.css'
 import BlogHome from './blog/BlogHome';
+import styles from './app.module.css'
 
 function App() {
     return (

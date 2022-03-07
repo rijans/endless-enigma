@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import styles from '../app.module.css'
 
 function BlogListAndForm(props) {
     const initialState = {
@@ -98,39 +99,48 @@ function BlogListAndForm(props) {
             <form onSubmit={handleFormSubmit}>
                 <label>
                     Blog Title
-                    <input type="text" name="title" value={blogPageState.input_title} onChange={handleFormChange}/>
+                    <input className="border-[1px] border-slate-400" type="text" name="title"
+                           value={blogPageState.input_title} onChange={handleFormChange}/>
                 </label>
                 <label>
                     Blog Content
-                    <input type="text" name="content" value={blogPageState.input_content}
+                    <input className="border-[1px] border-slate-400" type="text" name="content"
+                           value={blogPageState.input_content}
                            onChange={handleFormChange}/>
                 </label>
-                <input type="submit" value={blogPageState.formActionLabel}/>
+                <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 rounded" type="submit"
+                       value={blogPageState.formActionLabel}/>
             </form>
 
-            <table>
-                <tbody>
+            <table className="table-auto w-full border-separate  border border-slate-400">
+                <tbody className="">
                 <tr>
-                    <th>Sl.</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Date</th>
-                    <th className="actions">Action</th>
+                    <th className="border border-slate-300">Sl.</th>
+                    <th className="border border-slate-300">Title</th>
+                    <th className="border border-slate-300">Content</th>
+                    <th className="border border-slate-300">Date</th>
+                    <th className="border border-slate-300 actions">Action</th>
                 </tr>
                 {
                     blogList.map((blog, blogIndex) =>
                         <tr key={blogIndex}>
-                            <td>{blogIndex}</td>
-                            <td>{blog.title}</td>
-                            <td>{blog.content}</td>
-                            <td>{blog.date}</td>
-                            <td>
-                                <button disabled={!!blog.isEditing} type="button" value=""
-                                        onClick={e => handleEdit(blogIndex, e)}>{blog.isEditing ? 'Editing now' : 'Edit'}</button>
+                            <td className="border border-slate-300">{blogIndex}</td>
+                            <td className="border border-slate-300">{blog.title}</td>
+                            <td className="border border-slate-300">{blog.content}</td>
+                            <td className="border border-slate-300">{blog.date}</td>
+                            <td className="border border-slate-300">
                                 {blog.isEditing ?
-                                    <button type="button" value="" onClick={e => handleCancelEdit(blogIndex, e)}>Cancel
+                                    <button
+                                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-0.5 px-2 rounded"
+                                        type="button" value="" onClick={e => handleCancelEdit(blogIndex, e)}>Cancel
                                         edit</button> : ''}
-                                <button type="button" value="" onClick={e => handleDelete(blogIndex, e)}>Trash</button>
+                                <button
+                                    className={`text-white font-bold py-0.5 px-2 rounded ${blog.isEditing ? 'bg-gray-500 hover:bg-gray-700' : 'bg-blue-500 hover:bg-blue-700'}`}
+                                    disabled={!!blog.isEditing} type="button" value=""
+                                    onClick={e => handleEdit(blogIndex, e)}>{blog.isEditing ? 'Editing now' : 'Edit'}</button>
+                                <button className="bg-red-600 hover:bg-red-800 text-white font-bold py-0.5 px-2 rounded"
+                                        type="button" value="" onClick={e => handleDelete(blogIndex, e)}>Trash
+                                </button>
                             </td>
                         </tr>
                     )

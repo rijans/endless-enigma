@@ -1,0 +1,14 @@
+
+
+/*Footer*/
+.footer {
+    position: relative;
+    min-height: 85vh;
+}
+
+.footer-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+

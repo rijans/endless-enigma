@@ -1,10 +1,10 @@
 import React from 'react';
-import '../App.css'
+import styles from '../app.module.css'
 
 function Footer(props) {
     return (
-        <div className="footer">
-            <div className="footer-content">
+        <div className={styles.footer}>
+            <div className={styles['footer-content']}>
                 Copyright © 2022 React Enigma
             </div>
         </div>
