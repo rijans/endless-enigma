@@ -96,57 +96,90 @@ function BlogListAndForm(props) {
     return (
         <div>
 
-            <form onSubmit={handleFormSubmit}>
-                <label>
-                    Blog Title
-                    <input className="border-[1px] border-slate-400" type="text" name="title"
-                           value={blogPageState.input_title} onChange={handleFormChange}/>
-                </label>
-                <label>
-                    Blog Content
-                    <input className="border-[1px] border-slate-400" type="text" name="content"
-                           value={blogPageState.input_content}
+            <form className={'m-8 flex flex-row'} onSubmit={handleFormSubmit}>
+                <div className="mr-5">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blog
+                        Title</label>
+                    <input type="text" id="title"
+                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Title.." required value={blogPageState.input_title}
                            onChange={handleFormChange}/>
-                </label>
-                <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 rounded" type="submit"
-                       value={blogPageState.formActionLabel}/>
+                </div>
+                <div className="mr-5">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blog
+                        Content</label>
+                    <input type="text" id="content"
+                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           required value={blogPageState.input_content} onChange={handleFormChange}/>
+                </div>
+                <button type="submit"
+                        className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{blogPageState.formActionLabel}
+                </button>
             </form>
-
-            <table className="table-auto w-full border-separate  border border-slate-400">
-                <tbody className="">
-                <tr>
-                    <th className="border border-slate-300">Sl.</th>
-                    <th className="border border-slate-300">Title</th>
-                    <th className="border border-slate-300">Content</th>
-                    <th className="border border-slate-300">Date</th>
-                    <th className="border border-slate-300 actions">Action</th>
-                </tr>
-                {
-                    blogList.map((blog, blogIndex) =>
-                        <tr key={blogIndex}>
-                            <td className="border border-slate-300">{blogIndex}</td>
-                            <td className="border border-slate-300">{blog.title}</td>
-                            <td className="border border-slate-300">{blog.content}</td>
-                            <td className="border border-slate-300">{blog.date}</td>
-                            <td className="border border-slate-300">
-                                {blog.isEditing ?
-                                    <button
-                                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-0.5 px-2 rounded"
-                                        type="button" value="" onClick={e => handleCancelEdit(blogIndex, e)}>Cancel
-                                        edit</button> : ''}
-                                <button
-                                    className={`text-white font-bold py-0.5 px-2 rounded ${blog.isEditing ? 'bg-gray-500 hover:bg-gray-700' : 'bg-blue-500 hover:bg-blue-700'}`}
-                                    disabled={!!blog.isEditing} type="button" value=""
-                                    onClick={e => handleEdit(blogIndex, e)}>{blog.isEditing ? 'Editing now' : 'Edit'}</button>
-                                <button className="bg-red-600 hover:bg-red-800 text-white font-bold py-0.5 px-2 rounded"
-                                        type="button" value="" onClick={e => handleDelete(blogIndex, e)}>Trash
-                                </button>
-                            </td>
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
+            <div className="flex flex-col m-8">
+                <div className="overflow-x-auto shadow-md sm:rounded-lg">
+                    <div className="inline-block min-w-full align-middle">
+                        <div className="overflow-hidden ">
+                            <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                <thead className="bg-gray-100 dark:bg-gray-700">
+                                <tr>
+                                    <th scope="col"
+                                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        SL.
+                                    </th>
+                                    <th scope="col"
+                                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Title
+                                    </th>
+                                    <th scope="col"
+                                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Content
+                                    </th>
+                                    <th scope="col"
+                                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Created at
+                                    </th>
+                                    <th scope="col"
+                                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody
+                                    className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                {
+                                    blogList.map((blog, blogIndex) =>
+                                        <tr key={blogIndex} className={'hover:bg-gray-100 dark:hover:bg-gray-700'}>
+                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{blogIndex}</td>
+                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{blog.title}</td>
+                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{blog.content}</td>
+                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{blog.date}</td>
+                                            <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                                {blog.isEditing ?
+                                                    <button
+                                                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-0.5 px-2 rounded"
+                                                        type="button" value=""
+                                                        onClick={e => handleCancelEdit(blogIndex, e)}>Cancel
+                                                        edit</button> : ''}
+                                                <button
+                                                    className={`text-white font-bold py-0.5 px-2 rounded ${blog.isEditing ? 'bg-gray-500 hover:bg-gray-700' : 'bg-blue-500 hover:bg-blue-700'}`}
+                                                    disabled={!!blog.isEditing} type="button" value=""
+                                                    onClick={e => handleEdit(blogIndex, e)}>{blog.isEditing ? 'Editing now' : 'Edit'}</button>
+                                                <button
+                                                    className="bg-red-600 hover:bg-red-800 text-white font-bold py-0.5 px-2 rounded"
+                                                    type="button" value=""
+                                                    onClick={e => handleDelete(blogIndex, e)}>Trash
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
