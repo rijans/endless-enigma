@@ -6,7 +6,6 @@ export function addNumber (){
     }
 }
 
-
 export function subNumber (){
     return {
         type: SUB_NUMBER
