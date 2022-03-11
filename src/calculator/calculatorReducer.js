@@ -1,10 +1,10 @@
 import {ADD_NUMBER, MULTIPLY_BY_TWO, SUB_NUMBER} from "./constants";
 
-const initialState = {
+const initialNumberState = {
     number: 0
 }
 
-export default function calculatorReducer(state = initialState, action) {
+export default function calculatorReducer(state = initialNumberState, action) {
     switch (action.type) {
         case ADD_NUMBER:
             return {

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {addNumber, multiplyByTwo, subNumber} from "./actions";
 import {compose} from "redux";
+import calculatorReducer from "./calculatorReducer";
 
 function Calculator({number, increment, decrement, multiplyByTwo}) {
     return (
@@ -23,7 +24,7 @@ function Calculator({number, increment, decrement, multiplyByTwo}) {
 
 const mapStateToProps = (state) => {
     return {
-        number: state.number,
+        number: state.calculatorReducer.number,
     };
 }
 
