@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import styles from '../app.module.css'
+import {addBlog} from "./actions";
+import {compose} from "redux";
+import {connect} from "react-redux";
 
-function BlogListAndForm(props) {
+function BlogListAndForm({blogPageState, blogList}) {
     const initialState = {
         input_title: '',
         input_content: '',
@@ -188,4 +191,19 @@ function BlogListAndForm(props) {
     );
 }
 
-export default BlogListAndForm;
+const mapStateToProps = (state) => {
+    return {
+        blogPageState: state.blogReducer.blogPageState,
+        blogList: state.blogReducer.blogList,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addBlog: () => dispatch(addBlog())
+    }
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect)(BlogListAndForm);

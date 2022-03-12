@@ -1,15 +1,23 @@
 import {ADD_BLOG, EDIT_BLOG, DELETE_BLOG} from "./constants";
 
 const initialBlogState = {
-    blogNumber: 10
-}
+    blogList: [],
+    blogPageState: {
+        input_title: '',
+        input_content: '',
+        entry_date: new Date().toLocaleString(),
+        formActionLabel: 'Create',
+        isEditingOne: false,
+        editingBlogId: null
+    }
+};
 
 export default function blogReducer(state = initialBlogState, action) {
     switch (action.type) {
         case ADD_BLOG:
             return {
                 ...state,
-                blogNumber: state.blogNumber + 1
+                blogList: [...action.payload]
             }
         case DELETE_BLOG:
             return {
