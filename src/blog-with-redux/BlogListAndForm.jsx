@@ -5,16 +5,9 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 
 function BlogListAndForm({blogPageState, blogList}) {
-    const initialState = {
-        input_title: '',
-        input_content: '',
-        entry_date: new Date().toLocaleString(),
-        formActionLabel: 'Create',
-        isEditingOne: false,
-        editingBlogId: null
-    }
-    const [blogPageState, setBlogPageState] = useState(initialState)
-    const [blogList, setBlogList] = useState([])
+
+    const [blogPageState, setBlogPageState] = useState(blogPageState);
+    const [blogList, setBlogList] = useState(blogList);
 
 
     const handleFormChange = (e) => {
