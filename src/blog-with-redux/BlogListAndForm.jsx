@@ -1,26 +1,26 @@
 import React, {useState} from 'react';
 import styles from '../app.module.css'
-import {addBlog} from "./actions";
+import {addBlog, deleteBlog, handleBlogFromChange} from "./actions";
 import {compose} from "redux";
 import {connect} from "react-redux";
 
-function BlogListAndForm({blogPageState, blogList}) {
+function BlogListAndForm({blogPageState, handleBlogFromChange, blogList, addBlog, deleteBlog}) {
 
-    const [blogPageState, setBlogPageState] = useState(blogPageState);
-    const [blogList, setBlogList] = useState(blogList);
+    // const [blogPageState, setBlogPageState] = useState({...blogPageState});
+    // const [blogList, setBlogList] = useState(blogList);
 
 
     const handleFormChange = (e) => {
         if (e.target.name === 'title') {
-            setBlogPageState({
-                ...blogPageState,
-                input_title: e.target.value
-            });
+            // setBlogPageState({
+            //     ...blogPageState,
+            //     input_title: e.target.value
+            // });
         } else {
-            setBlogPageState({
-                ...blogPageState,
-                input_content: e.target.value
-            });
+            // setBlogPageState({
+            //     ...blogPageState,
+            //     input_content: e.target.value
+            // });
         }
     }
 
@@ -29,12 +29,12 @@ function BlogListAndForm({blogPageState, blogList}) {
 
         if (!blogPageState.isEditingOne) {
             //Create & Update Blog list
-            setBlogList([...blogList, {
-                title: blogPageState.input_title,
-                content: blogPageState.input_content,
-                date: blogPageState.entry_date,
-                isEditing: false
-            }]);
+            // setBlogList([...blogList, {
+            //     title: blogPageState.input_title,
+            //     content: blogPageState.input_content,
+            //     date: blogPageState.entry_date,
+            //     isEditing: false
+            // }]);
         } else {
             // console.log('Doing update operation');
             //Update by edit
@@ -43,7 +43,7 @@ function BlogListAndForm({blogPageState, blogList}) {
             updatedBlogList[blogPageState.editingBlogId].content = blogPageState.input_content;
             updatedBlogList[blogPageState.editingBlogId].date = new Date().toLocaleString();
             updatedBlogList[blogPageState.editingBlogId].isEditing = false;
-            setBlogList(updatedBlogList);
+            // setBlogList(updatedBlogList);
         }
 
         //Reset Blog form input states
@@ -51,24 +51,24 @@ function BlogListAndForm({blogPageState, blogList}) {
     }
 
     function resetBlogPageState() {
-        setBlogPageState(initialState)
+        // setBlogPageState(initialState)
     }
 
     const handleEdit = (blogIndex, e) => {
         // console.log('Blog index to edit: ' + blogIndex);
-        setBlogPageState(
-            {
-                ...blogPageState,
-                input_title: blogList[blogIndex].title,
-                input_content: blogList[blogIndex].content,
-                formActionLabel: 'Update',
-                isEditingOne: true,
-                editingBlogId: blogIndex
-            }
-        )
+        // setBlogPageState(
+        //     {
+        //         ...blogPageState,
+        //         input_title: blogList[blogIndex].title,
+        //         input_content: blogList[blogIndex].content,
+        //         formActionLabel: 'Update',
+        //         isEditingOne: true,
+        //         editingBlogId: blogIndex
+        //     }
+        // )
 
         blogList[blogIndex].isEditing = true;
-        setBlogList(blogList);
+        // setBlogList(blogList);
     }
     const handleCancelEdit = (blogIndex, e) => {
         // console.log('Blog index to cancel edit: ' + blogIndex);
@@ -77,35 +77,35 @@ function BlogListAndForm({blogPageState, blogList}) {
             ...blogList[blogIndex],
             isEditing: false
         };
-        setBlogList(blogList);
+        // setBlogList(blogList);
     }
 
     const handleDelete = (blogIndex, e) => {
         // console.log('Blog index to delete: ' + blogIndex);
         const newBlogList = blogList
         newBlogList.splice(blogIndex, 1);
-        setBlogList(newBlogList);
+        // setBlogList(newBlogList);
         resetBlogPageState();
     }
 
 
     return (
         <div className={'w-full'}>
-            <form className={'m-8 flex flex-row'} onSubmit={handleFormSubmit}>
+            <form className={'m-8 flex flex-row'} onSubmit={addBlog}>
                 <div className="mr-5">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blog
                         Title</label>
                     <input type="text" id="title" name={'title'}
                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Title.." required value={blogPageState.input_title}
-                           onChange={handleFormChange}/>
+                           onChange={handleBlogFromChange}/>
                 </div>
                 <div className="mr-5">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blog
                         Content</label>
                     <input type="text" id="content" name={'content'}
                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           required value={blogPageState.input_content} onChange={handleFormChange}
+                           required value={blogPageState.input_content} onChange={handleBlogFromChange}
                            placeholder={'Content..'}/>
                 </div>
                 <div className="mr-5">
@@ -193,7 +193,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addBlog: () => dispatch(addBlog())
+        handleBlogFromChange: (e) => dispatch(handleBlogFromChange(e)),
+        addBlog: () => dispatch(addBlog()),
+        deleteBlog: () => dispatch(deleteBlog()),
     }
 }
 

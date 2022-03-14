@@ -1,4 +1,4 @@
-import {ADD_BLOG, EDIT_BLOG, DELETE_BLOG} from "./constants";
+import {ADD_BLOG, EDIT_BLOG, DELETE_BLOG, HANDLE_BLOG_FORM_CHANGE} from "./constants";
 
 const initialBlogState = {
     blogList: [],
@@ -14,6 +14,11 @@ const initialBlogState = {
 
 export default function blogReducer(state = initialBlogState, action) {
     switch (action.type) {
+        case HANDLE_BLOG_FORM_CHANGE:
+            return {
+                ...state,
+                blogPageState: [...action.payload]
+            }
         case ADD_BLOG:
             return {
                 ...state,
